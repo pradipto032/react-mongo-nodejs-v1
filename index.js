@@ -19,17 +19,17 @@ app.listen(5038, ()=>{
     })
 })
 
-app.get("/api/todoapp/GetNodes", (req, res) => {
+app.get("/api/todoapp/GetNotes", (req, res) => {
     database.collection("todoappcollection").find({}).toArray((error, result) => {
         res.send(result);
     })
 })
 
-app.post("/api/todoapp/AddNodes", multer().none(), (req, res) => {
+app.post("/api/todoapp/AddNotes", multer().none(), (req, res) => {
     database.collection("todoappcollection").count({}, (error, numOfDocs) => {
         database.collection("todoappcollection").insertOne({
             id: (numOfDocs+1).toString(),
-            description: request.body.newNotes
+            description: req.body.newNotes
         });
         res.json("Added successfully");
     })
@@ -37,7 +37,7 @@ app.post("/api/todoapp/AddNodes", multer().none(), (req, res) => {
 
 app.delete("/api/todoapp/DeleteNotes", (req, res) => {
     database.collection("todoappcollection").deleteOne({
-        id: request.query.id
+        id: req.query.id
     });
     res.json("Deleted Successfully");
 })
