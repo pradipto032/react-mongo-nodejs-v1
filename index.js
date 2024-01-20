@@ -17,8 +17,10 @@ var CONNECTION_STRING=`mongodb+srv://${uname}:${password}@mongodbgrahql.xrkxwro.
 var DATABASENAME = "todoappdb";
 var database;
 
+
+
 app.listen(port, ()=>{
-    Mongoclient.connect(CONNECTION_STRING, (error, client) => {
+    Mongoclient.connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
         database = client.db(DATABASENAME);
         console.log("MongoDB connection is successful");
     })
