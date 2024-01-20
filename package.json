@@ -4,7 +4,7 @@
   "description": "Creating a simple app with frontend ReactJS and backend NodeJS and connecting with MongoDB database",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node index.js",
