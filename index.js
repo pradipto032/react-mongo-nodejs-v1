@@ -2,17 +2,22 @@ var Express = require("express");
 var Mongoclient = require("mongodb").MongoClient;
 var cors = require("cors");
 const multer = require("multer");
+require('dotenv').config();
 
 var app = Express();
 app.use(cors());
 
+const uname = process.env.UNAME;
+const password = process.env.PASSWORD;
+const port = process.env.PORT;
+
 // Give the driver connection of NodeJS of mongoDB
-var CONNECTION_STRING="mongodb+srv://pdaw:pdaw@mongodbgrahql.xrkxwro.mongodb.net/?retryWrites=true&w=majority";
+var CONNECTION_STRING=`mongodb+srv://${uname}:${password}@mongodbgrahql.xrkxwro.mongodb.net/?retryWrites=true&w=majority`;
 
 var DATABASENAME = "todoappdb";
 var database;
 
-app.listen(5038, ()=>{
+app.listen(port, ()=>{
     Mongoclient.connect(CONNECTION_STRING, (error, client) => {
         database = client.db(DATABASENAME);
         console.log("MongoDB connection is successful");
